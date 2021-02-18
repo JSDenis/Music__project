@@ -1,12 +1,19 @@
 const GENRE = 'https://cors-anywhere.herokuapp.com/https://api.deezer.com/genre';
 const LOCAL_GENRE = './src/data/genre.json';
 const LOCAL_RADIO = './src/data/radio.json';
-const RADIO = 'https://cors-anywhere.herokuapp.com/https://api.deezer.com/radio';
+const RADIO = 'https://api.deezer.com/radio';
 const JSON_RADIO = 'http://localhost:3006/radio';
 const JSON_PLAYLIST = 'http://localhost:3006/playlist';
 
+
 const getResource = async (url) => {
-  const res = await fetch(url);
+  const res = await fetch(url, {
+    method: 'GET', // *GET, POST, PUT, DELETE, etc.
+    //mode: 'cors', // no-cors, *cors, same-origin
+    headers: {
+      'Content-Type': 'application/json'
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    }});
 
   if (!res.ok) {
     throw new Error(`Error code////////// ${res.status}`);
@@ -16,17 +23,17 @@ const getResource = async (url) => {
 }
 
 const getAllRadio = async () => {
-  const res = await getResource(JSON_RADIO);
+  const res = await getResource(RADIO);
   return res.map(_transformRadio).slice(0, 5);
 }
 
 const getRadio = async (id) => {
-  const res = await getResource(`${JSON_RADIO}/${id}`);
+  const res = await getResource(`${RADIO}/${id}`);
   return res;
 }
 
 const getRadioCurrent = async (id) => {
-  const res = await getResource(`${JSON_RADIO}/${id}`);
+  const res = await getResource(`${RADIO}/${id}`);
   return res.tracklistLocal[0].preview;
 }
 
