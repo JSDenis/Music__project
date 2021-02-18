@@ -1,7 +1,7 @@
 const GENRE = 'https://cors-anywhere.herokuapp.com/https://api.deezer.com/genre';
 const LOCAL_GENRE = './src/data/genre.json';
 const LOCAL_RADIO = './src/data/radio.json';
-const RADIO = 'https://api.deezer.com/radio';
+const RADIO = 'https://cors-anywhere.herokuapp.com/https://api.deezer.com/radio';
 const JSON_RADIO = 'http://localhost:3006/radio';
 const JSON_PLAYLIST = 'http://localhost:3006/playlist';
 
